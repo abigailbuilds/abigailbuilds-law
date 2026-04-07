@@ -1,52 +1,65 @@
-# Law Site Update Workflow
+# Abigail Builds Law - Standalone Repository
 
-This repository is set up as a fork of the main Abigail Builds website. Here's how to pull in design updates while preserving law-specific content:
+This is a separate repository for the law-focused version of the Abigail Builds website.
 
-## Setup Complete ✅
-- Main site: `../Website` (upstream)
-- Law site: `./` (current directory)
-- Branch: `law-main` (for law-specific content)
+## Repository Setup ✅
+- **Main site**: `abigailbuilds/abigailbuilds-website` (completely separate)
+- **Law site**: `abigailbuilds/abigailbuilds-law` (this repository)
+- **Branch**: `law-main` (main branch for law-specific content)
 
-## To Pull Design/Style Updates from Main Site:
+## Repository Information:
+- **GitHub**: https://github.com/abigailbuilds/abigailbuilds-law
+- **Website URL**: https://law.abigailbuilds.com/
+- **Purpose**: Legal technology consulting services targeting law firms
 
-### 1. Create a temporary branch for updates
+## Development Workflow:
+
+### 1. Standard Git Workflow
 ```powershell
-git checkout -b temp-upstream-update
-```
-
-### 2. Pull latest changes from main site
-```powershell
-git pull upstream main
-```
-
-### 3. Merge back to law-main, keeping law content
-```powershell
-git checkout law-main
-git merge temp-upstream-update --no-commit
-# Review changes, resolve conflicts (keep law content, accept design updates)
+# Make changes to files
 git add .
-git commit -m "Update design from main site - [date]"
+git commit -m "Description of changes"
+git push origin law-main
 ```
 
-### 4. Clean up
+### 2. If you want to pull design updates from main site:
 ```powershell
-git branch -d temp-upstream-update
+# Add main site as a temporary remote
+git remote add main-site https://github.com/abigailbuilds/abigailbuilds-website.git
+git fetch main-site
+
+# Create temporary branch for merging updates
+git checkout -b temp-main-updates
+git merge main-site/main --no-commit
+
+# Review changes, keep law content, accept design updates
+git add .
+git commit -m "Merge design updates from main site"
+
+# Merge back to law-main
+git checkout law-main
+git merge temp-main-updates
+
+# Clean up
+git branch -d temp-main-updates
+git remote remove main-site
 ```
 
-## Files to Watch During Merges:
-- `index.html` - Keep law-specific content, accept design changes
-- `styles.css` - Usually safe to accept all changes
-- `script.js` - Usually safe to accept all changes
-- `images/` - May need to keep law-specific branding
+## Files Customized for Legal Market:
+- ✅ **index.html**: Hero, services, practice areas, case studies
+- ✅ **styles.css**: Practice areas styling
+- ✅ **Meta tags**: Legal SEO optimization
+- ✅ **Content**: Professional tone for law firm audience
 
-## Law-Specific Customizations Made:
-- Hero section: Legal technology focus
-- Trust strip: Law firm clients
-- Services: Legal automation, practice management, etc.
-- Meta tags: Legal SEO optimization
+## Law-Specific Features:
+- ✅ 8 practice area specialties for SEO
+- ✅ Legal compliance and security focus
+- ✅ Professional, conservative tone
+- ✅ Attorney-client privilege emphasis
+- ✅ Case studies with legal context
 
 ## Next Steps:
-1. Continue customizing content for legal market
-2. Add legal-specific case studies/projects
-3. Update testimonials for law firm clients
-4. Consider legal industry imagery
+1. Create the GitHub repository at `abigailbuilds/abigailbuilds-law`
+2. Push the initial code
+3. Set up hosting for `law.abigailbuilds.com`
+4. Continue customizing content for legal market
